@@ -9,7 +9,7 @@ void gauss_elimination(int n, double a[n][n], double b[n])
     {
         if (a[i][i] == 0)
         {
-            printf("Blad: zerowy element na przekatnej (pivot = 0)\n"); // do poprawienia pozniej przy dodaniu wyboru elementu glownego
+            printf("Blad: zerowy element na przekatnej\n"); // do poprawienia pozniej przy dodaniu wyboru elementu glownego
             exit(1);
         }
         
