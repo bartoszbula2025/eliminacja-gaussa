@@ -17,6 +17,10 @@ printToScreen(A);
 printToScreen(b);
 
 res = eliminate(A,b);
+if (res != 0) {
+    fprintf(stderr, "Eliminacja Gaussa nie powiodla sie!\n");
+    return -3;
+}
 x = createMatrix(b->r, 1);
 if (x != NULL) {
 res = backsubst(x,A,b);
