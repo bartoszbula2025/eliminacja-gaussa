@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "gauss.h"
 
 void gauss_elimination(int n, double a[n][n], double b[n])
 {
