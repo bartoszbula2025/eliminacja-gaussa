@@ -1,6 +1,8 @@
 #ifndef GAUSS_H
 #define GAUSS_H
 
-void gauss_elimination(int n, double a[n][n], double b[n]);
+#include "mat_io.h"
+
+void gauss_elimination(Matrix *A, double *b);
 
 #endif
