@@ -3,11 +3,17 @@
 #include <math.h>
 #include "mat_io.h"
 
-void gauss_elimination(Matrix *A, double *b)
+void gauss_elimination(Matrix *A, Matrix *B)
 {
     if (A->r != A->c)
     {
-        printf("Blad: macierz nie jest kwadratowa!\n");
+        printf("Blad: macierz A nie jest kwadratowa!\n");
+        exit(1);
+    }
+
+    if (B->c != 1 || B->r != A->r)
+    {
+        printf("Blad: macierz B musi byc wektorem kolumnowym o tym samym rozmiarze!\n");
         exit(1);
     }
 
@@ -41,9 +47,9 @@ void gauss_elimination(Matrix *A, double *b)
             A->data[i] = A->data[max_row];
             A->data[max_row] = tmp;
 
-            double tmpb = b[i];
-            b[i] = b[max_row];
-            b[max_row] = tmpb;
+            double tmpb = B->data[i][0];
+            B->data[i][0] = B->data[max_row][0];
+            B->data[max_row][0] = tmpb;
         }
 
         // eliminacja
@@ -56,7 +62,7 @@ void gauss_elimination(Matrix *A, double *b)
                 A->data[j][k] -= factor * A->data[i][k];
             }
 
-            b[j] -= factor * b[i];
+            B->data[j][0] -= factor * B->data[i][0];
         }
     }
 }
