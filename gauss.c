@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void gauss_elimination(int n, double a[n][n], double b[n])
 {
@@ -7,12 +8,26 @@ void gauss_elimination(int n, double a[n][n], double b[n])
     
     for (int i = 0; i < n - 1; i++)
     {
-        if (a[i][i] == 0)
+        // wybor glownego elementu
+        int max_row = i;
+        double max = fabs(a[i][i]);
+
+        for (int r = i + 1; r < n; r++)
         {
-            printf("Blad: zerowy element na przekatnej (pivot = 0)\n"); // do poprawienia pozniej przy dodaniu wyboru elementu glownego
+            if (fabs(a[r][i]) > max)
+            {
+                max = fabs(a[r][i]);
+                max_row = r;
+            }
+        }
+
+        if (max == 0)
+        {
+            printf("Blad: macierz osobliwa (kolumna %d)\n", i);
             exit(1);
         }
-        
+
+        // eliminacja
         for (int j = i + 1; j < n; j++)
         {
             factor = a[j][i] / a[i][i];
